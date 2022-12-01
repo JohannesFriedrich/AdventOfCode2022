@@ -1,0 +1,27 @@
+---
+title: "Day01"
+author: "Johannes Friedrich"
+date: "01.12.2022"
+output: github_document
+---
+
+## Read input
+
+```{r read_file}
+input <- scan(file = "input.txt", what = integer(), blank.lines.skip = FALSE)
+
+data <- split(input, cumsum(is.na(input)))
+data <- sapply(data, \(x) sum(x,na.rm = TRUE))
+```
+
+## Part 1
+
+```{r part_1}
+max(data)
+```
+
+## Part 2
+
+```{r part_2}
+sum(sort(data, decreasing = TRUE)[1:3])
+```
