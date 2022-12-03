@@ -1,0 +1,31 @@
+---
+title: "Day03"
+author: "Johannes Friedrich"
+date: "03.12.2022"
+output: github_document
+---
+
+## Read input
+
+```{r read_file}
+input <- sapply(readLines("input.txt"), \(x) strsplit(x, ""))
+```
+
+## Part 1
+
+```{r part_1}
+double_letters <- sapply(input, \(x) intersect(x[1:(length(x)/2)], x[(length(x)/2+1):length(x)]))
+
+sum(match(double_letters, c(letters, LETTERS)))
+```
+
+## Part 2
+
+```{r part_2}
+idx <- rep(1:(length(input)/3), each = 3)
+list <- split(input, idx)
+
+tripple_letters <- sapply(list, \(x) Reduce(intersect, x))
+
+sum(match(tripple_letters, c(letters, LETTERS)))
+```

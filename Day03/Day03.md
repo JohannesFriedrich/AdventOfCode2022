@@ -1,0 +1,33 @@
+Day03
+================
+Johannes Friedrich
+03.12.2022
+
+## Read input
+
+``` r
+input <- sapply(readLines("input.txt"), \(x) strsplit(x, ""))
+```
+
+## Part 1
+
+``` r
+double_letters <- sapply(input, \(x) intersect(x[1:(length(x)/2)], x[(length(x)/2+1):length(x)]))
+
+sum(match(double_letters, c(letters, LETTERS)))
+```
+
+    ## [1] 8394
+
+## Part 2
+
+``` r
+idx <- rep(1:(length(input)/3), each = 3)
+list <- split(input, idx)
+
+tripple_letters <- sapply(list, \(x) Reduce(intersect, x))
+
+sum(match(tripple_letters, c(letters, LETTERS)))
+```
+
+    ## [1] 2413
