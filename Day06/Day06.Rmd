@@ -1,0 +1,29 @@
+---
+title: "Day06"
+author: "Johannes Friedrich"
+date: "06.12.2022"
+output: github_document
+---
+
+## Read input
+
+```{r read_file}
+input <- strsplit(readLines("input.txt"), "")[[1]]
+```
+
+## Part 1
+
+```{r part_1}
+find_unique <- function(startIdx, len){
+  t <- rle(sort(input[startIdx:(startIdx+len-1)]))
+  return(all(t$lengths == 1))
+}
+which(sapply(seq_along(input), find_unique, 4))[1] + 3
+```
+
+## Part 2
+
+```{r part_2}
+which(sapply(seq_along(input), find_unique, 14))[1] + 13
+```
+
