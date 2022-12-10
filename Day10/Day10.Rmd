@@ -1,0 +1,33 @@
+---
+title: "Day10"
+author: "Johannes Friedrich"
+date: "10.12.2022"
+output: github_document
+---
+
+## Read input
+
+```{r read_file}
+input <- as.integer(unlist(strsplit(readLines("input.txt"), " ")))
+input[which(is.na(input))] <- 0L
+```
+
+## Part 1
+
+```{r part_1}
+idx <- seq(20L, 220L, 40L)
+sum(cumsum(c(1L,input))[idx] * idx)
+```
+
+## Part 2
+
+```{r part_2}
+reg <- cumsum(c(1L,input)) + 1L
+res <- sapply(1:240, \(x) if ((x%%40) %in% (reg[(x)]-1):(reg[(x)]+1)) "#" else ".")
+res <- matrix(res, nrow = 6, ncol = 40, byrow = TRUE)
+```
+
+```{r plot_result}
+apply(res, 1, paste0, collapse = " ")
+```
+
