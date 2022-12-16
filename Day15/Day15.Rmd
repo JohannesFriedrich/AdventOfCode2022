@@ -1,0 +1,51 @@
+---
+title: "Day15"
+author: "Johannes Friedrich"
+date: "15.12.2022"
+output: github_document
+---
+
+## Read input
+
+```{r read_file}
+input <- lapply(readLines("input.txt"), \(x) {
+  match <- gregexpr("[-]?[0-9]+",x)
+  return(as.integer(regmatches(x, match)[[1]]))
+})
+```
+
+## Part 1
+
+```{r part_1}
+beacons <- sapply(input, \(x) x[3] + 1i*x[4])
+
+no_beacon <- function(y2search){
+  res <- lapply(input, \(x) {
+  distance <- abs(x[1]-x[3]) + abs(x[2]-x[4])
+  sender <- x[1] + 1i*x[2]
+
+  ## plausibility test
+  if (x[2] - distance <= y2search && x[2] + distance >= y2search){
+    start_x <- Re(sender - distance + abs(y2search - Im(sender)))
+    end_x <- Re(sender + distance - abs(y2search - Im(sender)))
+    res <- start_x:end_x
+  } else {
+    res <- NULL}
+  
+  return(res)})
+}
+
+#no_beacons <- no_beacon(10)
+no_beacons <- no_beacon(2000000)
+
+length(unique(unlist(no_beacons))) - length(unique(beacons[which(Im(beacons) == 2000000)]))
+#length(unique(unlist(no_beacons))) - length(unique(beacons[which(Im(beacons) == 10)]))
+
+
+```
+
+## Part 2
+
+```{r part_2}
+
+```
