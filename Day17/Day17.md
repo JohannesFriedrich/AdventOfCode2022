@@ -1,13 +1,11 @@
----
-title: "Day17"
-author: "Johannes Friedrich"
-date: "17.12.2022"
-output: github_document
----
+Day17
+================
+Johannes Friedrich
+17.12.2022
 
 ## Read input
 
-```{r read_file}
+``` r
 jet_dir <-  ifelse(strsplit(readLines("input.txt"), "")[[1]] == ">", 1, -1)
 
 shapes <- list(
@@ -17,13 +15,11 @@ shapes <- list(
   I = seq(0+0i,0+3i,length.out = 4),
   block = c(0+0i,1+0i,0+1i,1+1i)
 )
-
-
 ```
 
 ## Part 1
 
-```{r part_1}
+``` r
 occupied <- seq(0-1i,6-1i,length.out =7)
 ####
 crash <- FALSE
@@ -56,8 +52,6 @@ for (rock in 1:n){
 max(Im(occupied))+1
 ```
 
+    ## [1] 3119
+
 ## Part 2
-
-```{r part_2}
-
-```
